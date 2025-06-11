@@ -1,0 +1,81 @@
+@startuml
+skinparam class {
+  BorderColor Black
+  BorderThickness 4
+  FontColor Black
+  BackgroundColor transparent
+}
+
+class UsuarioEmpresa {
+  +String nome
+  +String email
+  +String senha
+  +login()
+}
+
+class Dashboard {
+  +exibirVagasAbertas()
+  +exibirVagasEncerradas()
+  +novaVaga()
+  +editarPerfilEmpresa()
+}
+
+class Vaga {
+  +int id
+  +String titulo
+  +String descricao
+  +String status
+  +Date dataCriacao
+  +Date dataEncerramento
+  +List<Candidato> candidatos
+  +publicar()
+  +encerrar()
+  +editar()
+  +listarCandidatos()
+}
+
+class EtapaProcesso {
+  +String nome
+  +String status
+  +Date dataAtualizacao
+  +mudarEtapa()
+}
+
+class Validacao {
+  +validarVaga()
+  +validarPerfilEmpresa()
+}
+
+class Relatorio {
+  +gerarCurriculoPDF(candidato: Candidato)
+}
+
+class Candidato {
+  +int cpf
+  +String nome
+  +String email
+  +String curriculo
+  +List<EtapaProcesso> etapas
+  +visualizarPerfil()
+}
+
+class PerfilEmpresa {
+  +String cnpj
+  +String nome
+  +String descricao
+  +String setor
+  +String endereco
+  +editarPerfil()
+  +validarPerfil()
+}
+
+' Relationships
+UsuarioEmpresa --> Dashboard
+Dashboard --> Vaga : gerencia
+Dashboard --> PerfilEmpresa : acessa
+Vaga "1" --> "*" Candidato : possui
+Candidato "1" --> "*" EtapaProcesso : passaPor
+Vaga --> Validacao : usa
+PerfilEmpresa --> Validacao : usa
+Candidato --> Relatorio : exporta
+@enduml

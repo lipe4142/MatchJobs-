@@ -1,0 +1,59 @@
+@startuml
+title Fluxo de Atividades do Candidato
+
+start
+:Acessar o Dashboard;
+
+fork
+    group Análise Comportamental
+        :Acessar Análise Comportamental;
+        if (Já fez análise antes?) then (Sim)
+            :Mostrar resultado anterior;
+            if (Deseja refazer?) then (Sim)
+                :Preencher novo questionário;
+                :Gerar novo relatório;
+                :Exibir novo resultado;
+            else (Não)
+                :Encerrar análise;
+            endif
+        else (Não)
+            :Preencher questionário;
+            :Gerar relatório;
+            :Exibir resultado;
+        endif
+    end group
+
+fork again
+    group Gerenciar Currículo
+        :Acessar Edição de Currículo;
+        repeat
+            :Editar dados pessoais/profissionais;
+            :Adicionar/remover experiência;
+            :Adicionar/remover formação;
+            :Incluir/atualizar habilidades;
+            if (Salvar alterações?) then (Sim)
+                :Atualizar perfil;
+            else (Não)
+                :Continuar edição;
+            endif
+        repeat while (Deseja continuar editando?) is (Sim)
+        :Encerrar edição;
+    end group
+
+fork again
+    group Buscar Vagas
+        :Acessar Busca de Vagas;
+        if (Tipo de busca?) then (Feed Geral)
+            :Listar todas as vagas;
+        else (Compatíveis)
+            :Analisar perfil;
+            :Calcular compatibilidade;
+            :Sugerir vagas compatíveis;
+        endif
+        :Visualizar detalhes das vagas;
+        :Encerrar busca;
+    end group
+end fork
+
+stop
+@enduml
