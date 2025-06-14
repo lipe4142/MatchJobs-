@@ -10,13 +10,19 @@ O sistema permite que empresas gerenciem vagas de forma eficiente e que candidat
 ## 🧾 Licença (ANEXO A)
 
 @autores: Danilo Nava Soares
+
 	  João Felipe Oliveira Campos
+
 	  Maria Helena de Sousa Costa
+
 	  Saulo de Tassio da Costa dos Santos
 
 @contato: danilo.nava@discente.ufma.br
+
 	  joaofelipe4142@gmail.com
+
  	  maria.hsc@discente.ufma.br
+
 	  saulodetassio@gmail.com
 
 @data última versão: 13/06/2025  
