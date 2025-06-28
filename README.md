@@ -9,7 +9,9 @@ O sistema permite que empresas gerenciem vagas de forma eficiente e que candidat
 
 ## 🧾 Licença (ANEXO A)
 
-@autores: Danilo Nava Soares
+@autores: -
+
+	  Danilo Nava Soares
 
 	  João Felipe Oliveira Campos
 
@@ -17,7 +19,10 @@ O sistema permite que empresas gerenciem vagas de forma eficiente e que candidat
 
 	  Saulo de Tassio da Costa dos Santos
 
-@contato: danilo.nava@discente.ufma.br
+@contato: -
+
+
+	  danilo.nava@discente.ufma.br
 
 	  joaofelipe4142@gmail.com
 
@@ -48,10 +53,4 @@ Todo o material está sob a **Licença MIT**, podendo ser utilizado para fins ac
 > O SOFTWARE É FORNECIDO "COMO ESTÁ", SEM GARANTIA DE QUALQUER TIPO.
 
 Para mais informações, acesse: [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
-
----
-
-## 📬 Contato
-
-Dúvidas ou sugestões? Entre em contato por e-mail: [seu-email-aqui@dominio.com]
 

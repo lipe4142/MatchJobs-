@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>MatchJobs</title>
+    <meta
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+      name="viewport"
+    />
+    <link
+      rel="icon"
+      href="assets/img/logo/Matchjobslogo.png"
+      type="image/x-icon"
+    />
+
+    <!-- Fonts and icons -->
+    <script src="assets/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+      WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+          families: [
+            "Font Awesome 5 Solid",
+            "Font Awesome 5 Regular",
+            "Font Awesome 5 Brands",
+            "simple-line-icons",
+          ],
+          urls: ["assets/css/fonts.min.css"],
+        },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/plugins.min.css" />
+    <link rel="stylesheet" href="assets/css/kaiadmin.min.css" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="assets/css/demo.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar -->
+      <div class="sidebar" data-background-color="dark">
+        <div class="sidebar-logo">
+          <!-- Logo Header -->
+          <div class="logo-header" data-background-color="dark">
+            <a href="index.html" class="logo">
+              <img
+                src="assets/img/logo/matchjoblogowhite.png"
+                alt="navbar brand"
+                class="navbar-brand"
+                height="30"
+              />
+            </a>
+            <div class="nav-toggle">
+              <button class="btn btn-toggle toggle-sidebar">
+                <i class="gg-menu-right"></i>
+              </button>
+              <button class="btn btn-toggle sidenav-toggler">
+                <i class="gg-menu-left"></i>
+              </button>
+            </div>
+            <button class="topbar-toggler more">
+              <i class="gg-more-vertical-alt"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- End Logo Header -->
+
+        <!-- Start Sidebar -->
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+          <div class="sidebar-content">
+            <ul class="nav nav-secondary">
+        
+              <!-- DASHBOARD -->
+              <li class="nav-item active">
+                <a data-bs-toggle="collapse" href="#dashboard" aria-expanded="false">
+                  <i class="fas fa-home"></i>
+                  <p>Dashboard</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse show" id="dashboard">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="candidate-perfil.html">
+                        <span class="sub-item">Perfil</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="candidate-perfil-edit.html">
+                        <span class="sub-item">Editar Perfil</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+        
+              <!-- VAGAS -->
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#vagas">
+                  <i class="fas fa-briefcase"></i>
+                  <p>Vagas</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse show" id="vagas">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="job_listing.html">
+                        <span class="sub-item">Feed Geral</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="candidate-job-compatible.html">
+                        <span class="sub-item">Vagas Compatíveis</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+        
+              <!-- ANÁLISE COMPORTAMENTAL -->
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#analise">
+                  <i class="fas fa-user-check"></i>
+                  <p>Análise Comportamental</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse show" id="analise">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="candidate-analysis.html">
+                        <span class="sub-item">Ver Análise</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="candidate-analysis-edit.html">
+                        <span class="sub-item">Refazer Análise</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+        
+            </ul>
+          </div>
+        </div>
+        
+      </div>
+      <!-- End Sidebar -->
+
+      <div class="main-panel">
+        <div class="main-header">
+          <div class="main-header-logo">
+
+            <!-- Logo Header -->
+            <div class="logo-header" data-background-color="dark">
+              <a href="index.html" class="logo">
+                <img
+                  src="assets/img/matchjoblogo.png"
+                  alt="navbar brand"
+                  class="navbar-brand"
+                  height="20"
+                />
+              </a>
+              <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                  <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                  <i class="gg-menu-left"></i>
+                </button>
+              </div>
+              <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+              </button>
+            </div>
+            <!-- End Logo Header -->
+          </div>
+
+          <!-- Start Navbar -->
+          <nav class="navbar navbar-header navbar-expand-lg" style="border-bottom: 1px solid #444444; min-height: 30px; padding-top: 0.15rem; padding-bottom: 0.25rem;">            
+            <div class="container-fluid">
+
+              <!-- Topbar Icons -->
+              <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+
+                <!-- Messages Dropdown -->
+                <li class="nav-item topbar-icon dropdown hidden-caret">
+                  <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-envelope"></i>
+                  </a>
+                  <ul class="dropdown-menu messages-notif-box animated fadeIn" aria-labelledby="messageDropdown">
+                    <li>
+                      <div class="dropdown-title d-flex justify-content-between align-items-center">
+                        Messages
+                        <a href="#" class="small">Mark all as read</a>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="notif-center">
+                        <a href="#">
+                          <div class="notif-img">
+                            <img src="assets/img/jm_denis.jpg" alt="Profile" />
+                          </div>
+                          <div class="notif-content">
+                            <span class="subject">Jimmy Denis</span>
+                            <span class="block">How are you?</span>
+                            <span class="time">5 min ago</span>
+                          </div>
+                        </a>
+                        <a href="#">
+                          <div class="notif-img">
+                            <img src="assets/img/chadengle.jpg" alt="Profile" />
+                          </div>
+                          <div class="notif-content">
+                            <span class="subject">Chad</span>
+                            <span class="block">Ok, thanks!</span>
+                            <span class="time">10 min ago</span>
+                          </div>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+
+                <!-- Notifications Dropdown -->
+                <li class="nav-item topbar-icon dropdown hidden-caret">
+                  <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-bell"></i>
+                    <span class="notification">2</span>
+                  </a>
+                  <ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
+                    <li>
+                      <div class="dropdown-title">You have 2 notifications</div>
+                    </li>
+                    <li>
+                      <div class="notif-center">
+                        <a href="#">
+                          <div class="notif-icon notif-primary">
+                            <i class="fa fa-user-plus"></i>
+                          </div>
+                          <div class="notif-content">
+                            <span class="block">New user registered</span>
+                            <span class="time">5 min ago</span>
+                          </div>
+                        </a>
+                        <a href="#">
+                          <div class="notif-icon notif-success">
+                            <i class="fa fa-comment"></i>
+                          </div>
+                          <div class="notif-content">
+                            <span class="block">You have a new comment</span>
+                            <span class="time">12 min ago</span>
+                          </div>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+
+                    <!-- User Profile -->
+                    <li class="nav-item topbar-user dropdown hidden-caret">
+                      <a
+                        class="dropdown-toggle profile-pic"
+                        data-bs-toggle="dropdown"
+                        href="#"
+                        aria-expanded="false"
+                      >
+                        <div class="avatar-sm">
+                          <img
+                            src="assets/img/sauro.jpg"
+                            alt="..."
+                            class="avatar-img rounded-circle"
+                          />
+                        </div>
+                        <span class="profile-username">
+                          <span class="op-7">Olá,</span>
+                          <span class="fw-bold">Enzo</span>
+                        </span>
+                      </a>
+                      <ul class="dropdown-menu dropdown-user animated fadeIn">
+                        <div class="dropdown-user-scroll scrollbar-outer">
+                          <li>
+                            <div class="user-box">
+                              <div class="avatar-lg">
+                                <img
+                                  src="assets/img/sauro.jpg"
+                                  alt="image profile"
+                                  class="avatar-img rounded"
+                                />
+                              </div>
+                              <div class="u-text">
+                                <h4>Enzo</h4>
+                                <p class="text-muted">enzogabriel@gnail.com</p>
+                                <a
+                                  href="candidate-perfil.html"
+                                  class="btn btn-xs btn-secondary btn-sm"
+                                  >Ver Perfil</a
+                                >
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="index.html">
+                              <i class="fas fa-sign-out-alt me-2"></i> Logout
+                            </a>                
+                          </li>
+                        </div>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+          
+              </nav>
+          <!-- End Navbar -->
+        </div>
+
+        <!-- Start Page Inner -->
+        <div class="page-inner">
+          <div class="page-header">
+            <h4 class="page-title">Análise Comportamental</h4>
+            <ul class="breadcrumbs">
+              <li class="nav-home"><a href="#"><i class="icon-home"></i></a></li>
+              <li class="separator"><i class="icon-arrow-right"></i></li>
+              <li class="nav-item"><a href="#">Candidato</a></li>
+              <li class="separator"><i class="icon-arrow-right"></i></li>
+              <li class="nav-item"><a href="#">Análise Comportamental</a></li>
+            </ul>
+          </div>
+        
+          <div class="row">
+            <!-- Perfil principal -->
+            <div class="col-md-12">
+              <div class="card" style="background: linear-gradient(135deg, #6B73FF 0%, #000DFF 100%); color: white;">
+                <div class="card-body d-flex flex-column flex-md-row align-items-center justify-content-between">
+                  <div class="d-flex align-items-center mb-3 mb-md-0">
+                    <div class="avatar avatar-xl me-3 bg-white text-primary d-flex align-items-center justify-content-center rounded-circle" style="width: 80px; height: 80px;">
+                      <i class="fas fa-brain fa-2x"></i>
+                    </div>
+                    <div>
+                      <h3 class="mb-0">Perfil: <strong>Analítico</strong></h3>
+                      <p class="mb-0">Pensamento lógico, foco em dados e solução de problemas complexos.</p>
+                    </div>
+                  </div>
+                  <span class="badge bg-light text-dark py-2 px-3 rounded-pill fw-bold">Alta Aderência a Cargos Técnicos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <!-- Gráfico e características -->
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header bg-primary text-white">
+                  <h5 class="mb-0">Distribuição de Traços</h5>
+                </div>
+                <div class="card-body">
+                  <canvas id="behaviorRadarChart" height="250"></canvas>
+                </div>
+              </div>
+            </div>
+        
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header bg-gradient-light text-dark">
+                  <h5 class="mb-0">Destaques Comportamentais</h5>
+                </div>
+                <div class="card-body">
+                  <!-- Descrição do perfil -->
+                  <p class="mb-4 fst-italic text-secondary" style="font-size: 0.95rem; line-height: 1.4;">
+                    O perfil <strong>Analítico</strong> caracteriza-se pela busca por precisão, foco em dados e tomada de decisões fundamentadas. Pessoas com esse perfil tendem a ser detalhistas, metódicas e gostam de ambientes estruturados, valorizando a lógica e o planejamento.
+                  </p>
+            
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      <i class="fas fa-comments text-primary me-2"></i>
+                      Comunicação: clara, lógica e objetiva.
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fas fa-balance-scale text-info me-2"></i>
+                      Decisão: baseada em evidências.
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fas fa-users text-success me-2"></i>
+                      Relacionamento: reservado, mas eficaz.
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fas fa-cogs text-warning me-2"></i>
+                      Ambiente ideal: com estrutura e processos definidos.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+
+          </div>
+        
+          <!-- Linha do tempo ou sugestão -->
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header bg-secondary text-white">
+                  <h5 class="mb-0">Sugestões com base na análise</h5>
+                </div>
+                <div class="card-body">
+                  <div class="timeline">
+                    <div class="timeline-item">
+                      <div class="timeline-point bg-primary"></div>
+                      <div class="timeline-event">
+                        <span class="timeline-title fw-bold">Posições sugeridas:</span>
+                        <p class="text-muted mb-0">Analista de Dados, Desenvolvedor Back-end, Engenheiro de Qualidade de Software.</p>
+                      </div>
+                    </div>
+                    <div class="timeline-item">
+                      <div class="timeline-point bg-success"></div>
+                      <div class="timeline-event">
+                        <span class="timeline-title fw-bold">Dica para se destacar:</span>
+                        <p class="text-muted mb-0">Fortalecer habilidades de apresentação pode ampliar sua capacidade de influência.</p>
+                      </div>
+                    </div>
+                    <div class="timeline-item">
+                      <div class="timeline-point bg-info"></div>
+                      <div class="timeline-event">
+                        <span class="timeline-title fw-bold">Áreas de desenvolvimento:</span>
+                        <p class="text-muted mb-0">Adaptação a ambientes dinâmicos e com menos controle.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-4">
+            <a href="candidate-analysis-edit.html" class="btn btn-primary btn-lg px-4 shadow-sm">
+              <i class="fas fa-redo-alt me-2"></i> Refazer Análise Comportamental
+            </a>
+          </div>
+          
+        </div>
+        
+        
+        <!--   End Page Inner   -->
+    
+ 
+    <!-- Start Footer -->
+    <footer class="footer py-3 mt-5 border-top bg-light">
+      <div class="container-fluid d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <div class="mb-2 mb-md-0">
+          <span class="text-muted">© 2025 MatchJobs. Todos os direitos reservados.</span>
+        </div>
+
+        <nav class="nav">
+          <a class="nav-link text-muted px-2" href="http://www.themekita.com" target="_blank">ThemeKita</a>
+          <a class="nav-link text-muted px-2" href="#">Ajuda</a>
+          <a class="nav-link text-muted px-2 d-none d-lg-inline" href="#">Licenças</a>
+        </nav>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+
+    <!--   Core JS Files   -->
+    <script src="assets/js/core/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/core/bootstrap.min.js"></script>
+
+    <!-- jQuery Scrollbar -->
+    <script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+    <!-- Chart JS -->
+    <script src="assets/js/plugin/chart.js/chart.min.js"></script>
+
+    <!-- jQuery Sparkline -->
+    <script src="assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Chart Circle -->
+    <script src="assets/js/plugin/chart-circle/circles.min.js"></script>
+
+    <!-- Datatables -->
+    <script src="assets/js/plugin/datatables/datatables.min.js"></script>
+
+    <!-- Bootstrap Notify -->
+    <script src="assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+    <!-- jQuery Vector Maps -->
+    <script src="assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
+    <script src="assets/js/plugin/jsvectormap/world.js"></script>
+
+    <!-- Google Maps Plugin -->
+    <script src="assets/js/plugin/gmaps/gmaps.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Kaiadmin JS -->
+    <script src="assets/js/kaiadmin.min.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        
+    <script>
+      const ctx = document.getElementById("behaviorRadarChart").getContext("2d");
+      const behaviorRadarChart = new Chart(ctx, {
+        type: "radar",
+        data: {
+          labels: ["Comunicação", "Liderança", "Planejamento", "Flexibilidade", "Colaboração"],
+          datasets: [
+            {
+              label: "Canidato",
+              data: [80, 60, 95, 50, 70],
+              backgroundColor: "rgba(33, 150, 243, 0.2)",
+              borderColor: "#2196f3",
+              pointBackgroundColor: "#2196f3",
+              borderWidth: 2,
+            },
+          ],
+        },
+
+        options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        maintainAspectRatio: true,
+        scale: {
+          ticks: {
+
+            display: false,
+            stepSize: 20
+          },
+          angleLines: {
+            display: true
+          },
+          gridLines: {
+            color: 'rgba(0, 0, 0, 0.1)'
+          }
+        },
+        legend: {
+          display: false
+        },
+      }
+    });
+    </script>
+    
+  </body>
+</html>
