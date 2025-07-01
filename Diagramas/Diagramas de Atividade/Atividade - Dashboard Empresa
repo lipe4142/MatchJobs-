@@ -1,0 +1,85 @@
+@startuml
+title Fluxo de Atividades do RH
+
+start
+
+:Redirecionar para o Dashboard;
+
+fork
+    :Opção: Vagas Abertas;
+    :Listar vagas;
+    if (Selecionar vaga?) then (Sim)
+      :Mostrar detalhes da vaga;
+      fork
+        :Editar vaga;
+        :Validar alterações;
+        :Salvar vaga;
+      fork again
+        :Ver candidatos;
+        :Listar candidatos inscritos;
+        if (Selecionar candidato?) then (Sim)
+          :Visualizar perfil do candidato;
+          :Mudar etapa (ex: "Aprovado", "Reprovado");
+          :Validar e atualizar o status;
+        else (Não)
+          :Voltar para a lista de vagas;
+        endif
+      end fork
+    else (Não)
+      :Manter-se na lista;
+    endif
+fork again
+    :Opção: Vagas Encerradas;
+    :Buscar vagas;
+    if (Resultados encontrados?) then (Sim)
+      :Exibir lista de vagas encerradas;
+      if (Selecionar vaga?) then (Sim)
+        :Mostrar detalhes da vaga (candidatos, feedbacks, etc.);
+      else (Não)
+        :Voltar à lista;
+      endif
+    else (Não)
+      :Exibir mensagem: "Nenhuma vaga encontrada";
+    endif
+fork again
+    :Opção: Nova Vaga;
+    :Abrir formulário;
+    repeat
+      :Preencher detalhes (título, descrição, requisitos);
+      if (Validar dados?) then (Não)
+        :Corrigir informações;
+      else (Sim)
+        :Pré-visualizar vaga;
+        if (Publicar?) then (Não)
+          :Retornar ao formulário para ajustes;
+        else (Sim)
+          :Vaga é criada e ativada;
+          break
+        endif
+      endif
+    repeat while (Deseja ajustar a vaga antes de publicar)
+fork again
+    :Opção: Perfil da Empresa;
+    :Carregar os dados atuais da empresa;
+    if (Dados estão completos?) then (Não)
+      :Inicializa um formulário de edição;
+    else (Sim)
+      :Exibe o formulário para edição direta;
+    endif
+    repeat
+      :Editar informações (missão, valores, contato, etc.);
+      if (Validar alterações?) then (Não)
+        :Corrigir os dados;
+      else (Sim)
+        if (Salvar?) then (Não)
+          :Voltar para edição;
+        else (Sim)
+          :Perfil é atualizado;
+          break
+        endif
+      endif
+    repeat while (Deseja continuar editando o perfil)
+end fork
+
+stop
+@enduml

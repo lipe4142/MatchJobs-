@@ -1,0 +1,95 @@
+@startuml
+skinparam class {
+  BorderColor Black
+  BorderThickness 4
+  FontColor Black
+  BackgroundColor transparent
+}
+
+class Usuario {
+  + nome : String
+  + email : String
+  + senha : String
+  + login()
+  + visualizarDashboard()
+}
+
+class Dashboard {
+  + exibirAnalise()
+  + exibirBuscador()
+  + exibirPerfil()
+}
+
+class Experiencia {
+  + empresa : String
+  + cargo : String
+  + periodo : String
+}
+
+class Curso {
+  + nome : String
+  + instituicao : String
+  + duracao : String
+}
+
+class Habilidade {
+  + nome : String
+  + nivel : String
+}
+
+class AnaliseComportamental {
+  + jaRealizada : boolean
+  + realizarQuestionario()
+  + gerarRelatorio()
+  + verRelatorio()
+}
+
+class RelatorioComportamental {
+  + perfil : String
+  + caracteristicas : List<String>
+}
+
+class Vaga {
+  + titulo : String
+  + empresa : String
+  + descricao : String
+  + compativel : boolean
+}
+
+class BuscadorVagas {
+  + buscarGeral() : List<Vaga>
+  + buscarPorCompatibilidade(perfil : Perfil) : List<Vaga>
+  + candidatarSe(vaga : Vaga)
+}
+
+class Perfil {
+  + cpf : String
+  + nomeCompleto : String
+  + endereco : String
+  + dataNascimento : String
+  + experiencias : List<Experiencia>
+  + cursos : List<Curso>
+  + habilidades : List<Habilidade>
+  + editarDadosPessoais()
+  + adicionarExperiencia()
+  + adicionarCurso()
+  + adicionarHabilidade()
+  + salvarCurriculo()
+  + baixarCurriculo()
+}
+
+' Relationships with roles
+Usuario --> Dashboard : acessa
+Usuario --> Perfil : possui
+Usuario --> AnaliseComportamental : realiza
+Usuario --> BuscadorVagas : utiliza
+
+Perfil "1" --> "*" Experiencia : tem
+Perfil "1" --> "*" Curso : tem
+Perfil "1" --> "*" Habilidade : tem
+
+AnaliseComportamental --> RelatorioComportamental : gera
+
+BuscadorVagas "1" --> "*" Vaga : busca
+
+@enduml

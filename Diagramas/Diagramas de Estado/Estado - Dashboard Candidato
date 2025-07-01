@@ -1,0 +1,59 @@
+@startuml
+skinparam state {
+  BackgroundColor White
+  BorderColor Black
+  FontColor Black
+  FontSize 12
+  ArrowColor Black
+}
+
+state "Dashboard" as Dashboard_State
+
+state "Editar Perfil" as EditarPerfil {
+  state "Incompleto" as EditarPerfil_Incompleto
+  state "Parcialmente Preenchido" as EditarPerfil_ParcialmentePreenchido
+  state "Completo" as EditarPerfil_Completo
+  state "Atualizado" as EditarPerfil_Atualizado
+
+  [*] --> EditarPerfil_Incompleto
+  EditarPerfil_Incompleto --> EditarPerfil_ParcialmentePreenchido : Dados iniciais inseridos
+  EditarPerfil_ParcialmentePreenchido --> EditarPerfil_Completo : Todos Campos Preenchidos
+  EditarPerfil_Completo --> EditarPerfil_Atualizado : Edição após preenchimento
+  EditarPerfil_Atualizado --> EditarPerfil_Atualizado : Novas edições
+  EditarPerfil_Atualizado --> EditarPerfil_ParcialmentePreenchido : Deletar Dados
+}
+
+state "Análise Comportamental" as AnaliseComportamental {
+  state "Não Realizada" as AnaliseComportamental_NaoRealizada
+  state "Em Progresso" as AnaliseComportamental_EmProgresso
+  state "Concluída" as AnaliseComportamental_Concluida
+  state "Atualizada" as AnaliseComportamental_Atualizada
+
+  [*] --> AnaliseComportamental_NaoRealizada
+  AnaliseComportamental_NaoRealizada --> AnaliseComportamental_EmProgresso : Questionário iniciado
+  AnaliseComportamental_EmProgresso --> AnaliseComportamental_Concluida : Questionário enviado
+  AnaliseComportamental_Concluida --> AnaliseComportamental_Atualizada : Nova análise realizada
+}
+
+state "Vagas Compatíveis" as VagasCompativeis {
+  state "Sem Vagas" as VagasCompativeis_SemVagas
+  state "Vagas Encontradas" as VagasCompativeis_VagasEncontradas
+  state "Vaga Selecionada" as VagasCompativeis_VagaSelecionada
+  state "Candidatura Enviada" as VagasCompativeis_CandidaturaEnviada
+
+  [*] --> VagasCompativeis_SemVagas
+  VagasCompativeis_SemVagas --> VagasCompativeis_VagasEncontradas : Perfil atualizado e filtro aplicado
+  VagasCompativeis_VagasEncontradas --> VagasCompativeis_VagaSelecionada : Visualizar ou selecionar vaga
+  VagasCompativeis_VagaSelecionada --> VagasCompativeis_CandidaturaEnviada : Enviar candidatura
+  VagasCompativeis_CandidaturaEnviada --> VagasCompativeis_VagasEncontradas : Navegar por outras vagas
+}
+
+[*] --> Dashboard_State
+Dashboard_State --> EditarPerfil
+Dashboard_State --> AnaliseComportamental
+Dashboard_State --> VagasCompativeis
+
+' If you want a label for the composite state "VagasCompativeis" itself, use the note or description
+' note right of VagasCompativeis : Vagas Abertas
+
+@enduml

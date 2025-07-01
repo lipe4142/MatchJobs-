@@ -1,0 +1,64 @@
+@startuml
+skinparam sequence {
+  ParticipantPadding 20
+  BoxPadding 10
+  BoxBorderColor Black
+  BoxBackgroundColor #e0e0e0
+  ArrowColor Black
+  LifeLineBorderColor Gray
+  LifeLineBackgroundColor #F8F8F8
+}
+
+actor Usuário as "Empresa"
+participant Sistema as "Sistema"
+participant Dashboard as "Dashboard"
+database BancoDados as "Banco de Dados"
+participant Validador as "Validador"
+
+box "Login e Dashboard" #ADDFFF
+  Usuário ->> Sistema: Login
+  Sistema ->> Dashboard: Carregar Dashboard
+  Dashboard -->> Usuário: Exibir menu principal
+end box
+
+box "Vagas Encerradas" #FFD0E0
+  Usuário ->> Dashboard: Selecionar "Vagas Encerradas"
+  Dashboard ->> BancoDados: Consultar vagas (status=encerrada)
+  BancoDados -->> Dashboard: Retornar lista de vagas
+  Dashboard -->> Usuário: Exibir vagas encerradas
+  Usuário ->> BancoDados: Solicitar detalhes vaga
+  BancoDados -->> Usuário: Retornar dados completos
+end box
+
+box "Adicionar Nova Vaga" #D0FFD0
+  Usuário ->> Dashboard: Selecionar "Adicionar Vaga"
+  Dashboard -->> Usuário: Exibir formulário vaga
+  loop Validação
+    Usuário ->> BancoDados: Enviar dados preliminares
+    BancoDados ->> Validador: Validar campos
+    Validador -->> BancoDados: Resultado validação
+    BancoDados -->> Usuário: Feedback validação
+  end
+  Usuário ->> BancoDados: Submeter vaga completa
+  BancoDados ->> Sistema: Confirmar registro
+  Sistema -->> Usuário: Notificar criação
+end box
+
+box "Editar Perfil da Empresa" #F0F0FF
+  Usuário ->> Dashboard: Selecionar "Editar Perfil"
+  Dashboard ->> BancoDados: Buscar dados empresa
+  BancoDados -->> Dashboard: Retornar dados cadastrais
+  Dashboard -->> Usuário: Exibir formulário
+  Usuário ->> BancoDados: Enviar atualizações
+  BancoDados ->> Validador: Validar dados
+  Validador -->> BancoDados: Resultado validação
+  alt Dados válidos
+    BancoDados ->> Sistema: Confirmar atualização
+    Sistema -->> Usuário: Confirmação
+  else Dados inválidos
+    BancoDados -->> Usuário: Erros de validação
+  end
+end box
+
+Dashboard -->> Usuário: Retornar ao menu
+@enduml

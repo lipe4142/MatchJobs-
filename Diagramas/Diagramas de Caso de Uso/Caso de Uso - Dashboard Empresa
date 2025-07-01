@@ -1,0 +1,42 @@
+@startuml
+left to right direction
+
+actor Empresa as "Empresa"
+
+rectangle "Sistema da Empresa" {
+    usecase "Login" as UC1
+    usecase "Acessar Dashboard da Empresa" as UC2
+    usecase "Gerenciar Vagas Abertas" as UC3
+    usecase "Gerenciar Vagas Encerradas" as UC4
+    usecase "Adicionar Nova Vaga" as UC5
+    usecase "Editar Perfil da Empresa" as UC6
+
+    usecase "Listar Vagas Abertas" as UC3a
+    usecase "Editar Vaga" as UC3b
+    usecase "Encerrar Vaga" as UC3c
+
+    usecase "Ver Detalhes da Vaga Encerrada" as UC4b
+
+    usecase "Preencher Detalhes da Vaga" as UC5a
+
+    usecase "Atualizar Informações da Empresa" as UC6a
+
+    Empresa --> UC1
+    UC1 --> UC2 : <<include>>
+
+    UC2 ..> UC3 : <<include>>
+    UC2 ..> UC4 : <<include>>
+    UC2 ..> UC5 : <<include>>
+    UC2 ..> UC6 : <<include>>
+
+    UC3 ..> UC3a : <<include>>
+    UC3 ..> UC3b : <<include>>
+    UC3 ..> UC3c : <<include>>
+
+    UC4 ..> UC4b : <<include>>
+
+    UC5 ..> UC5a : <<include>>
+
+    UC6 ..> UC6a : <<include>>
+}
+@enduml

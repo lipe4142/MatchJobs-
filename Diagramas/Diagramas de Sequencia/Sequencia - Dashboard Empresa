@@ -1,0 +1,57 @@
+@startuml
+skinparam sequence {
+  ParticipantPadding 20
+  BoxPadding 10
+  BoxBorderColor Black
+  BoxBackgroundColor #e0e0e0
+  ArrowColor Black
+  LifeLineBorderColor Gray
+  LifeLineBackgroundColor #F8F8F8
+}
+
+actor Usuário as "Empresa"
+participant Sistema as "Sistema"
+participant Dashboard as "Dashboard"
+database BancoDados as "Banco de Dados"
+participant Relatório as "Relatório"
+
+box "Fluxo de Login" #ADDFFF
+  Usuário -> Sistema: Login
+  Sistema -> Dashboard: Carregar Dashboard
+  Dashboard -->> Usuário: Exibir opções (Vagas Abertas)
+end box
+
+box "Gerenciamento de Vagas Abertas" #D0FFD0
+  Usuário -> BancoDados: Selecionar vaga específica
+  BancoDados -->> Usuário: Retornar detalhes da vaga
+
+  box "Detalhes da Vaga e Candidatos" #C8E6FF
+    Usuário -> BancoDados: Solicitar candidatos da vaga
+    BancoDados -->> Usuário: Retornar lista de candidatos
+
+    Usuário -> BancoDados: Selecionar candidato específico
+    BancoDados -->> Usuário: Retornar detalhes do candidato
+
+    box "Ações sobre Candidato" #B4D8FF
+      alt Mudar etapa
+        Usuário -> BancoDados: Atualizar etapa do candidato
+        BancoDados -->> Usuário: Confirmar atualização
+      else Exportar currículo
+        Usuário -> Relatório: Solicitar currículo
+        Relatório -> BancoDados: Buscar dados do candidato
+        BancoDados -->> Relatório: Retornar dados completos
+        Relatório -->> Usuário: Disponibilizar download
+      end
+    end box
+  end box
+
+  box "Ação: Encerrar Vaga" #F5E6FF
+    alt Encerrar vaga
+      Usuário -> BancoDados: Atualizar status da vaga
+      BancoDados -->> Usuário: Confirmar encerramento
+    end
+  end box
+end box
+
+Dashboard -->> Usuário: Retornar ao dashboard atualizado
+@enduml

@@ -1,0 +1,73 @@
+@startuml
+skinparam state {
+  BackgroundColor White
+  BorderColor Black
+  FontColor Black
+  FontSize 12
+  ArrowColor Black
+  BorderThickness 2
+}
+
+state "Dashboard da Empresa" as DashboardEmpresa_State
+
+state "Gerenciamento de Vagas" as GerenciamentoVagas {
+  state "Sem Vagas" as GerenciamentoVagas_SemVagas
+  state "Vaga Criada" as GerenciamentoVagas_VagaCriada
+  state "Vaga Publicada" as GerenciamentoVagas_VagaPublicada
+  state "Vaga Encerrada" as GerenciamentoVagas_VagaEncerrada
+
+  [*] --> GerenciamentoVagas_SemVagas
+  GerenciamentoVagas_SemVagas --> GerenciamentoVagas_VagaCriada : Nova vaga cadastrada
+  GerenciamentoVagas_VagaCriada --> GerenciamentoVagas_VagaPublicada : Publicação aprovada
+  GerenciamentoVagas_VagaPublicada --> GerenciamentoVagas_VagaEncerrada : Período encerrado
+
+  state "Candidaturas" as Candidaturas {
+    state "Sem Candidatos" as Candidaturas_SemCandidatos
+    state "Com Candidatos" as Candidaturas_ComCandidatos
+    state "Em Análise" as Candidaturas_EmAnalise
+    state "Selecionados" as Candidaturas_Selecionados
+    state "Contratados" as Candidaturas_Contratados
+
+    [*] --> Candidaturas_SemCandidatos
+    Candidaturas_SemCandidatos --> Candidaturas_ComCandidatos : Recebe candidaturas
+    Candidaturas_ComCandidatos --> Candidaturas_EmAnalise : Iniciar triagem
+    Candidaturas_EmAnalise --> Candidaturas_Selecionados : Candidatos filtrados
+    Candidaturas_Selecionados --> Candidaturas_Contratados : Candidato aceito
+  }
+  GerenciamentoVagas_VagaPublicada --> Candidaturas
+}
+
+state "Perfil da Empresa" as PerfilEmpresa {
+  state "Perfil Incompleto" as PerfilEmpresa_PerfilIncompleto
+  state "Perfil Parcial" as PerfilEmpresa_PerfilParcial
+  state "Perfil Completo" as PerfilEmpresa_PerfilCompleto
+  state "Perfil Verificado" as PerfilEmpresa_PerfilVerificado
+  state "Perfil Atualizado" as PerfilEmpresa_PerfilAtualizado
+
+  [*] --> PerfilEmpresa_PerfilIncompleto
+  PerfilEmpresa_PerfilIncompleto --> PerfilEmpresa_PerfilParcial : Dados básicos
+  PerfilEmpresa_PerfilParcial --> PerfilEmpresa_PerfilCompleto : Todos dados
+  PerfilEmpresa_PerfilCompleto --> PerfilEmpresa_PerfilVerificado : Validação
+  PerfilEmpresa_PerfilVerificado --> PerfilEmpresa_PerfilAtualizado : Edições posteriores
+}
+
+state "Processo Seletivo" as ProcessoSeletivo {
+  state "Rascunho" as ProcessoSeletivo_Rascunho
+  state "Planejado" as ProcessoSeletivo_Planejado
+  state "Em Andamento" as ProcessoSeletivo_EmAndamento
+  state "Concluído" as ProcessoSeletivo_Concluido
+  state "Arquivado" as ProcessoSeletivo_Arquivado
+
+  [*] --> ProcessoSeletivo_Rascunho
+  ProcessoSeletivo_Rascunho --> ProcessoSeletivo_Planejado : Etapas definidas
+  ProcessoSeletivo_Planejado --> ProcessoSeletivo_EmAndamento : Iniciado
+  ProcessoSeletivo_EmAndamento --> ProcessoSeletivo_Concluido : Vaga preenchida
+  ProcessoSeletivo_Concluido --> ProcessoSeletivo_Arquivado : Documentação completa
+}
+
+[*] --> DashboardEmpresa_State
+DashboardEmpresa_State --> GerenciamentoVagas
+DashboardEmpresa_State --> PerfilEmpresa
+DashboardEmpresa_State --> ProcessoSeletivo
+
+@enduml

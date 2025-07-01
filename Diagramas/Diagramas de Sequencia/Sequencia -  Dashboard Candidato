@@ -1,0 +1,53 @@
+@startuml
+skinparam sequence {
+  ParticipantPadding 20
+  BoxPadding 10
+  BoxBorderColor Black
+  BoxBackgroundColor #e0e0e0
+  ArrowColor Black
+  LifeLineBorderColor Gray
+  LifeLineBackgroundColor #F8F8F8
+}
+
+actor Usuário as "Usuário"
+participant Sistema as "Sistema"
+participant Dashboard as "Dashboard"
+participant Perfil as "Perfil"
+participant Analise as "Análise Comportamental"
+participant Vagas as "Buscar Vagas"
+
+box "Login Inicial" #ADDFFF
+  Usuário ->> Sistema: Login
+  Sistema ->> Dashboard: Carregar Dashboard
+  Dashboard -->> Usuário: Exibir opções (Perfil, Análise, Vagas)
+end box
+
+box "Interações no Dashboard" #D0FFD0
+  alt Usuário seleciona "Editar Perfil"
+    Usuário ->> Perfil: Preencher dados pessoais
+    Perfil ->> Perfil: Adicionar experiências
+    Perfil ->> Perfil: Adicionar cursos e escolaridade
+    Perfil ->> Perfil: Adicionar habilidades
+    Perfil ->> Sistema: Salvar currículo
+    Sistema -->> Usuário: Confirmação de salvamento
+    Sistema ->> Dashboard: Retornar ao Dashboard
+  else Usuário seleciona "Análise Comportamental"
+    Usuário ->> Analise: Verifica se já realizou análise
+    alt Não realizada
+      Analise ->> Usuário: Exibe questionário
+      Usuário ->> Analise: Envia respostas
+      Analise ->> Sistema: Gerar relatório
+    end
+    Sistema -->> Usuário: Exibir resultado da análise
+    Sistema ->> Dashboard: Retornar ao Dashboard
+  else Usuário seleciona "Buscar Vagas"
+    Vagas ->> Sistema: Buscar dados do perfil
+    Sistema ->> Vagas: Retornar vagas compatíveis
+    Vagas -->> Usuário: Exibir lista de vagas
+    Usuário ->> Vagas: Candidatar-se (opcional)
+    Vagas ->> Sistema: Registrar candidatura
+    Sistema ->> Dashboard: Retornar ao Dashboard
+  end
+end box
+
+@enduml
